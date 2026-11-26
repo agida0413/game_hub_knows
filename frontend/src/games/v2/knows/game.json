@@ -1,0 +1,28 @@
+{
+  "id": "knows",
+  "title": "AI KNOWS YOU",
+  "en": "AI KNOWS YOU",
+  "short": "고르기 전에, AI 는 답을 봉인한다",
+  "tagline": "당신이 고르기 전에, AI 는 답을 봉인해 둔다 — 20번의 선택으로 벌이는 3~5분 심리전",
+  "share": "고르기 전에 AI 는 답을 봉인해 둔다 — 숨긴 사진을 맞히는 3~5분 심리전",
+  "about": [
+    "사진 몇 장 중 하나를 숨기면, AI 가 당신의 고르는 습관을 읽어 숨긴 사진을 찾아내는 심리 게임입니다.",
+    "AI 는 당신이 고르기 전에 답을 봉인해 두고, 판이 끝나면 봉인을 열어 보여 줍니다.",
+    "단계가 오를수록 AI 도 영리해져요. 한 판은 3~5분.",
+    "로그인 없이 휴대폰 브라우저에서 바로 할 수 있고, 습관 기록은 이 기기에만 남습니다."
+  ],
+  "status": "live",
+  "time": "3~5분",
+  "categories": ["심리"],
+  "tone": "cold",
+  "color": "#3cc8c8",
+  "background": "#120d16",
+  "images": {
+    "card": "/knows/img/cover.webp",
+    "share": "/knows/og.jpg",
+    "icon": "/knows/icon-192.png",
+    "icon512": "/knows/icon-512.png"
+  },
+  "hash": "/knows",
+  "standalone": true
+}

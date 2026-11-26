@@ -1,0 +1,11 @@
+{
+  "style": "Cinematic low-key film photograph for a stage-magic mind-reading game. Mysterious but not scary, rich shadows, subtle film grain, high detail, premium quality. Absolutely NO text, NO letters, NO numbers, NO logos, NO brand marks, NO watermark. No people and no faces. ",
+  "images": {
+    "stage": {"aspect": "9:16", "prompt": "Empty dark theater stage seen from the audience, a single soft circular spotlight pooling on a black wooden floor at center, heavy deep-crimson velvet curtains fading into shadow at both sides, faint haze drifting through the light beam, shallow depth of field, generous empty dark space in the middle third for overlaid photos."},
+    "cover": {"aspect": "9:16", "prompt": "Five small printed photographs laid face up in a loose fan on a dark velvet table under a single overhead spotlight, one photograph slightly turned and glowing warmer than the others as if secretly chosen, a sealed cream envelope with a dark red wax seal beside them, thin haze in the light, the photographs show only blurred abstract color shapes, lower half calm and dark for a title overlay."}
+  },
+  "music": {
+    "loop": {"long": true, "prompt": "Instrumental only, no vocals. Mysterious minimal stage-magic ambient loop, steady soft pulse at 66 BPM like a slow heartbeat on a muted low drum, warm analog synth pad, sparse celesta notes, subtle ticking texture, calm suspense not horror, no sudden hits, constant volume, seamless loop, about two minutes."},
+    "reveal": {"long": false, "prompt": "Instrumental only, no vocals. Short magical reveal cue, a soft rising shimmer of bells and strings building for four seconds into a gentle bright chord bloom, then a warm low sustained pad that slowly fades, wonder and a pleasant chill, not scary, about thirty seconds."}
+  }
+}

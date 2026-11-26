@@ -1,0 +1,45 @@
+/* 최후의 변론 — 360px 바닥 기준 (2026-11-24 품질 2라운드): 글자 14px 이상 · 누르는 곳 44px 이상
+   사건 소개 · 편 고르기 · 현장 조사 · 법정 · 변론서 · 판결 화면을 휴대폰으로 자동 계측(tools/judge_audit_360.py)해 나온
+   14px 미만 글자 · 44px 미만 누름 자리를 한 곳에 모았다. 가장 마지막에 읽어 앞선 규칙(좁은 화면용 작은 글자 · 줄인 높이)을 이긴다.
+   이 파일에는 14px 미만 글자 · 44px 미만 높이를 쓰지 않는다 (tests/judge-readable.test.mjs 가 지킨다) */
+
+/* ---- 글자 바닥 14px */
+/* 사건 소개 */
+.overview .m-tabs button, .overview .m-tabs em, .overview .ov-facts span, .overview .ov-chips span,
+.overview .btn.small { font-size: 14px !important; }
+/* 편 고르기 */
+.side-modal .side-what, .side-modal .side-what b, .side-modal .side-plea, .side-modal .side-plea small, .side-modal .side-btn > span,
+.side-modal .side-next, .side-modal .side-ranked, .modal .side-what, .modal .side-what b { font-size: 14px !important; }
+/* 사건 소개 영상 */
+.cine .cine-label, .cine .cine-title span, .cine .cine-foot .tool-tg, .cine .cine-hint { font-size: 14px !important; }
+/* 현장 조사 — 단서 카드 · 증거 목록 · 증거 훑어보기 */
+.clue-card .label, .clue-card p, .clue-card .clue-surface, .clue-ev span, .clue-ev small, .clue-ev b { font-size: 14px !important; }
+.ev-card .ev-name, .ev-card .ev-id, .ev-card .ev-type, .ev-card .ev-filed, .ev-card .tone, .ev-card .thumb-doc, .ev-card .ev-cite,
+.ev-open .ev-name, .ev-open .ev-id, .ev-open .ev-type, .ev-open .ev-filed, .ev-open .tone, .ev-open .thumb-doc { font-size: 14px !important; }
+.ev-review .ev-review-kicker, .ev-review .ev-review-type, .ev-review .tone, .ev-review .btn.small, .ev-review .ev-review-count small,
+.ev-review .ev-review-dots button { font-size: 14px !important; }
+.modal .label { font-size: 14px !important; }
+/* 의뢰인 면담 */
+.cli .cli-who small, .cli .cli-who em, .cli .cli-note, .cli .cli-skip { font-size: 14px !important; }
+/* 법정 */
+.court-game .cmd-label, .court-game .cmd-label small, .court-game .cmd-hint { font-size: 14px !important; }
+.court-game .issue-text, .court-game .issue-text .cite-mark, .court-game .issue-foot { font-size: 14px !important; }
+.court-game .win-banner .btn.small, .win-banner .btn.small { font-size: 14px !important; }
+.court-game .ev-card .ev-cite { font-size: 14px !important; }
+.truth .truth-kicker { font-size: 14px !important; }
+/* 변론서 · 재판장의 칠판 */
+.plea .plea-round, .plea .plea-count small, .plea .plea-helper-btn, .plea .plea-pick-btn { font-size: 14px !important; }
+.plea .chalk-title, .plea .chalk-tally, .plea .chalk-tally b, .plea .chalk-item, .plea .chalk-item span, .plea .chalk-item small, .plea .chalk-item b,
+.chalk-lines { font-size: 14px !important; }
+.plea .chalk-item { max-width: 240px; line-height: 1.35; }
+
+/* ---- 누르는 곳 바닥 44px */
+.plea .chalk-item { min-height: 44px; }
+.plea .plea-helper-btn, .plea .plea-pick-btn { min-height: 44px; }
+.cli .cli-skip { min-height: 44px; min-width: 44px; padding: 10px 14px; }
+.ev-review .ev-review-dots button { min-width: 44px; height: 44px; }
+.ev-review .ev-review-dots { gap: 6px; }
+.hud .jm-badge, .jm-badge { min-height: 44px; }
+.dialogue .objection-btn, .objection-btn { min-height: 44px; }
+.overview .btn.small, .ev-review .btn.small, .win-banner .btn.small, .court-game .btn.small { min-height: 44px; }
+.cine .cine-foot .tool-tg { min-height: 44px; min-width: 44px; }

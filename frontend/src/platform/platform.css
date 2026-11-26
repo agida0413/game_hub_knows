@@ -1,0 +1,76 @@
+/* 막간 공용 — 게임 머리줄 · 다른 게임 입구 · 터치 방어 · /g/<게임> 첫 화면 소개 (2026-11-26 허브 유지 + 게임 독립) */
+
+/* 터치 방어 — 도마 박자(11/26)가 넣은 처리를 모든 게임에: 글자 선택 · 길게 누르기 말풍선 · 사진 끌기 · 두 번 탭 확대를 CSS 로만 막는다
+   입력칸은 예외. 듣개(passive:false)는 달지 않는다 — 판 입력이 늦어지거나 끊긴다(도마 박자 11/26 사고) */
+.mg-game, .mg-game * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+.mg-game { touch-action: manipulation; }
+.mg-game img, .mg-game svg, .mg-game canvas { -webkit-user-drag: none; user-drag: none; }
+.mg-game input, .mg-game textarea, .mg-game [contenteditable], .mg-game [contenteditable] * { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+/* 당겨서 새로고침 · 화면 튕김 — 게임 화면이 떠 있는 동안 문서 전체 */
+html.mg-game-page, html.mg-game-page body { overscroll-behavior: none; }
+
+/* 게임 머리줄 단추 — 허브 '홈' 단추와 같은 자리 · 폭(게임들이 왼쪽 72px 를 비워 둔다, hub/hubback.css) */
+.mg-bar { position: fixed; z-index: 60; left: max(6px, env(safe-area-inset-left)); top: calc(6px + env(safe-area-inset-top));
+  min-width: 44px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 0 8px 0 4px; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.45); background: rgba(14, 12, 10, 0.72); color: #fff;
+  font-family: inherit; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35); }
+.mg-bar img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; display: block; }
+.mg-bar:active { transform: scale(0.96); }
+.mg-bar:focus-visible { outline: 2px solid #ffd479; outline-offset: 2px; }
+@media (min-width: 600px) and (min-height: 521px) {
+  .mg-bar[data-gamebar='future'], .mg-bar[data-gamebar='search'], .mg-bar[data-gamebar='knows'], .mg-bar[data-gamebar='train'] { left: calc(50% - 240px + 6px); }
+  .mg-bar[data-gamebar='room'] { left: calc(50% - 220px + 6px); }
+  /* 도마 박자: 판 폭 = 화면 높이 × 9/16 (점검 · 준비 중 띠가 있으면 26px 뺀 높이) — 판 왼쪽 위로 (옛 허브 단추와 같은 자리, hub/hubback.css) */
+  .mg-bar[data-gamebar='beat'] { left: max(6px, calc(50% - 100dvh * 9 / 32 + 6px)); }
+  body:has([data-prep-note]) .mg-bar[data-gamebar='beat'] { left: max(6px, calc(50% - (100dvh - 26px) * 9 / 32 + 6px)); }
+}
+/* 점검 · 준비 중 운영자 띠가 있으면 그 아래로 */
+body:has([data-prep-note]) .mg-bar { top: calc(30px + env(safe-area-inset-top)); }
+
+.mg-sheet-bg { position: fixed; inset: 0; z-index: 130; display: flex; align-items: flex-end; justify-content: center; background: rgba(0, 0, 0, 0.55); }
+.mg-sheet { width: min(440px, 100%); box-sizing: border-box; padding: 14px 16px calc(18px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0;
+  background: #1b1814; color: #fff; border: 1px solid rgba(255, 255, 255, 0.16); border-bottom: 0; }
+.mg-sheet-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.mg-sheet-head img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; }
+.mg-sheet-head b { flex: 1; font-size: 18px; line-height: 1.3; word-break: keep-all; }
+.mg-x { width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 22px; background: rgba(255, 255, 255, 0.08); color: #fff; cursor: pointer; }
+.mg-sheet-row { display: flex; gap: 10px; }
+.mg-sheet-btn { flex: 1; min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3); background: transparent; color: #fff; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; }
+.mg-sheet-btn.main { background: var(--mg-color, #ffd479); border-color: var(--mg-color, #ffd479); color: #15110d; }
+.mg-ask { margin: 0 0 10px; font-size: 15px; font-weight: 700; color: #ffd479; text-align: center; }
+.mg-note { min-height: 20px; margin: 8px 0 0; font-size: 14px; text-align: center; color: #e6dcc8; }
+
+/* 결과 화면 끝 '다른 게임' — 작게, 게임 화면 색을 해치지 않게 */
+.mg-more { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin: 10px auto 0; padding: 0 16px;
+  border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.55); background: rgba(14, 12, 10, 0.55); color: #fff; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+/* 위: 사진 위 · 밝은 · 어두운 결과 화면 어디서나 읽히게 반투명 어두운 바탕 + 흰 글자 */
+
+/* /g/<게임> 첫 화면 소개 — 화면 앱이 뜨기 전 잠깐 · 검색엔진이 읽는 글 (React 가 이 자리를 덮는다) */
+.mg-about { max-width: 480px; margin: 0 auto; padding: 72px 20px 32px; color: #e8dcc4; font-size: 15px; line-height: 1.6; }
+.mg-about h1 { margin: 0 0 12px; font-size: 26px; }
+.mg-about p { margin: 0 0 8px; }
+.mg-about a { color: #ffd479; }
+
+/* 홈 화면에 추가 권유 (InstallHint.jsx) — 아래에서 올라오는 작은 판. 뒤를 어둡게 덮지 않아 결과 화면이 그대로 보인다 */
+.mg-a2hs { position: fixed; z-index: 120; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; pointer-events: none;
+  padding: 0 8px calc(8px + env(safe-area-inset-bottom)); box-sizing: border-box; animation: mg-a2hs-in 0.28s ease-out; }
+.mg-a2hs-card { pointer-events: auto; width: min(440px, 100%); box-sizing: border-box; padding: 12px 14px 6px; border-radius: 18px; background: #1b1814; color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5); }
+.mg-a2hs-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.mg-a2hs-head img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; flex: none; }
+.mg-a2hs-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.mg-a2hs-text b { font-size: 17px; line-height: 1.3; word-break: keep-all; }
+.mg-a2hs-text span { font-size: 14px; line-height: 1.35; color: #e6dcc8; word-break: keep-all; }
+.mg-a2hs-card .mg-sheet-btn { width: 100%; flex: none; }
+.mg-a2hs-steps { display: flex; gap: 8px; }
+.mg-a2hs-step { flex: 1; min-width: 0; min-height: 76px; box-sizing: border-box; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 6px; border-radius: 12px; background: rgba(255, 255, 255, 0.08); color: #ffd479; }
+.mg-a2hs-step span { font-size: 14px; font-weight: 700; color: #fff; text-align: center; word-break: keep-all; }
+.mg-a2hs-step i { position: absolute; left: 8px; top: 6px; width: 20px; height: 20px; border-radius: 50%; background: #ffd479; color: #15110d;
+  font-size: 12px; font-weight: 700; font-style: normal; line-height: 20px; text-align: center; }
+.mg-a2hs-never { display: block; width: 100%; min-height: 44px; margin-top: 2px; border: 0; background: transparent; color: #b9ad98; font: inherit; font-size: 14px; cursor: pointer; }
+.mg-a2hs-down { pointer-events: none; color: #ffd479; margin-top: 2px; animation: mg-a2hs-bob 1.1s ease-in-out infinite; }
+@keyframes mg-a2hs-in { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes mg-a2hs-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@media (prefers-reduced-motion: reduce) { .mg-a2hs, .mg-a2hs-down { animation: none; } }

@@ -1,0 +1,18 @@
+{
+  "name": "AI KNOWS YOU",
+  "short_name": "AI KNOWS YOU",
+  "description": "당신이 고르기 전에, AI 는 답을 봉인해 둔다 — 20번의 선택으로 벌이는 심리전",
+  "lang": "ko",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0d14",
+  "theme_color": "#0a0d14",
+  "categories": ["games"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

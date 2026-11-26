@@ -1,0 +1,51 @@
+/* 모든 게임 왼쪽 위 '허브' 단추 — 어두운 · 밝은 화면 모두에서 보이게 반투명 어두운 바탕 + 밝은 테두리 */
+.hubback { position: fixed; z-index: 60; left: max(6px, env(safe-area-inset-left)); top: calc(6px + env(safe-area-inset-top));
+  min-width: 44px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 0 12px 0 10px; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.45); background: rgba(14, 12, 10, 0.72); color: #fff;
+  font-weight: 700; font-size: 14px; line-height: 1; font-family: inherit; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35); -webkit-tap-highlight-color: transparent; }
+.hubback:active { transform: scale(0.96); }
+.hubback:focus-visible { outline: 2px solid #ffd479; outline-offset: 2px; }
+.hubback-ask { position: fixed; inset: 0; z-index: 130; display: grid; place-items: center; padding: 16px; background: rgba(0, 0, 0, 0.6); }
+.hubback-card { width: min(320px, 100%); box-sizing: border-box; padding: 20px 16px 16px; border-radius: 14px; background: #1b1814; color: #fff; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); }
+.hubback-card p { margin: 0 0 16px; font-size: 16px; font-weight: 700; }
+.hubback-card div { display: flex; gap: 8px; }
+.hubback-card button { flex: 1; min-height: 44px; border-radius: 10px; font-weight: 700; font-size: 14px; line-height: 1; font-family: inherit; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.35); }
+.hubback-stay { background: #ffd479; color: #1b1814; border-color: #ffd479 !important; }
+.hubback-out { background: transparent; color: #fff; }
+
+/* 겹침 정리 — 게임마다 왼쪽 위 머리줄에 왼쪽 여백을 줘서, 그 게임의 뒤로 가기 · 시계 · 점수가 허브 단추 오른쪽으로 비켜난다
+   (허브 단추 폭 68px + 왼쪽 6px + 틈 → 첫 칸이 80px 부터). 새 게임의 머리줄은 여기에 한 줄 추가
+   약관 · 처리방침(.screen-legal)은 홈 단추가 없는 화면이라 같은 .ov-bar 라도 비우지 않는다 (11/25 — 뒤로 단추 왼쪽이 72px 비어 보였다) */
+.screen .ev-review-head, .screen .hud, .screen:not(.screen-legal) .ov-bar, .screen .inq-hud, .screen .rc-head, .screen .rc-live-head,
+.screen .tt-top, .screen .fx-top, .screen .kv-top, .screen .rl-top,
+.screen .ym-hd, .screen .ym-top, .screen .knw .knw-top, .screen .sq-top, .screen .tm-head { padding-left: 72px !important; }
+.screen .home-head { padding-left: 70px !important; padding-top: 4px; }
+/* 표지 왼쪽 위에 따로 띄운 음악 단추 — 홈 단추 오른쪽으로 비켜난다 (인라인 style left:10 이라 !important)
+   2026-11-25 전체 시험: AI KNOWS YOU 표지의 음악 단추가 홈 단추 밑에 가려, 음악을 끄려고 누르면 홈으로 나갔다
+   (다들 언제 돼? 표지의 .ym-mus 도 같은 자리에 가려 있다 — 단체방은 다른 세션 담당이라 보고서에만) */
+.screen .kv-cv > .kv-mus[data-act='music'] { left: 72px !important; }
+/* 끄트머리: 머리줄(판 고르기 · 점수 · 칸 · 소리 · 도움말)이 꽉 차서 허브 단추 아래로 */
+.screen .ed-top { padding-top: 54px !important; }
+/* 법정 머리줄: 심증 · 재판장 · 기록 단추가 꽉 차서 제한 시계가 밀려난다 — 법정의 '사건 목록으로' 화살표는 허브 단추 자리와 같으므로 숨긴다
+   (나가면 허브 단추가 휴정으로 저장하고 나간다. 브라우저 뒤로 가기는 기존 휴정 · 포기 확인 창) */
+.screen .hud > .icon-btn:first-child { display: none !important; }
+
+/* 도마 박자(준비 중 · 운영자만): 위 안내 띠(약 22px) 아래로 판이 26px 내려가므로 홈 단추도 띠 아래로 (못 나간 방은 자기 파일에서 같은 처리) */
+body:has([data-prep-note]) .hubback[data-hubback='beat'] { top: calc(30px + env(safe-area-inset-top)); }
+
+/* PC · 태블릿 (2026-11-24 PC 점검) — 휴대폰 폭의 가운데 판 게임은 단추를 화면 끝이 아니라 판의 왼쪽 위에 (판 머리줄이 비워 둔 72px 자리)
+   판 폭: 480px(10초 뒤의 나 · 최근 검색어 · AI KNOWS YOU · 내릴게요 · AI가 못 나간 방 · 끄트머리) · 440px(다들 언제 돼?)
+   최후의 변론은 화면을 꽉 채우는 배치라 지금처럼 화면 왼쪽 위. 도마 박자 · 가짜 수칙은 각 담당이 정한다. 가로로 든 휴대폰은 그대로 */
+@media (min-width: 600px) and (min-height: 521px) {
+  .hubback[data-hubback='future'], .hubback[data-hubback='search'], .hubback[data-hubback='knows'], .hubback[data-hubback='train'],
+  .hubback[data-hubback='tim'], .hubback[data-hubback='edge'] { left: calc(50% - 240px + 6px); }
+  .hubback[data-hubback='room'] { left: calc(50% - 220px + 6px); }
+  /* 도마 박자: 판 폭 = 화면 높이 × 9/16 (준비 중 띠가 있으면 26px 뺀 높이) — 판 왼쪽 위로 */
+  .hubback[data-hubback='beat'] { left: max(6px, calc(50% - 100dvh * 9 / 32 + 6px)); }
+  body:has([data-prep-note]) .hubback[data-hubback='beat'] { left: max(6px, calc(50% - (100dvh - 26px) * 9 / 32 + 6px)); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .hubback:hover { background: rgba(14, 12, 10, 0.88); border-color: rgba(255, 255, 255, 0.75); }
+  .hubback-card button:hover { filter: brightness(1.1); }
+}
